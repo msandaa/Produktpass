@@ -1,0 +1,16 @@
+{% extends 'API_client/base.html' %}
+
+
+{% block content %}
+
+
+<h2>Produktpass</h2>
+<p>Agararprodukt:<strong>{{ agrarprodukt }}</strong></p>
+<p>los_chargen:<strong>{{ los_chargen }}</strong></p>
+<p>Longitude:<strong>{{ longitude }}</strong></p>
+<p>Latitude:<strong>{{ latitude }}</strong></p>
+<p>Nutzflächennr:<strong>{{ nutzflächennr }}</strong></p>
+<p><a href="/produktpass/{{id}}/massnahmen"> Massnahmen </a></p>
+
+
+{% endblock %}

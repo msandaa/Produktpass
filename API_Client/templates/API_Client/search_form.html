@@ -1,0 +1,22 @@
+{% extends 'API_client/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <link rel="stylesheet" href="{% static 'css/API_client.css' %}">
+
+    <form action="" method="get">
+      <div>
+       <label for="id">Produktpass-ID:</label>
+       <input type="search" id="id" name="produktpass_search" required pattern='[0-9]{1,5}'>
+     </div>
+     <div class="button">
+       <button type="submit">Send</button>
+     </div>
+   </form>
+
+
+
+{% endblock %}

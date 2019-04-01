@@ -1,0 +1,18 @@
+{% extends 'API_client/base.html' %}
+
+
+{% block content %}
+
+
+{% for i in massnahmen %}
+
+<li><p>Masnnahmen-Id.: <strong> {{ i.id }} </strong></p>
+    <p>Datum: <strong> {{ i.datum }} </strong> </p>
+    <p>Bearbeitungsschritt: <strong> {{ i.bearbeitung }} </strong> </p>
+    <p>Verantwortlicher: <strong> {{ i.owner }} </strong> </p></li>
+
+
+{% endfor %}
+
+
+{% endblock %}
