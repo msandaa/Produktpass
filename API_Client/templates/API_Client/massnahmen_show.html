@@ -3,16 +3,30 @@
 
 {% block content %}
 
+<h4>Maßnahmen auf dem Feld</h4>
 
-{% for i in massnahmen %}
+<hr>
 
-<li><p>Masnnahmen-Id.: <strong> {{ i.id }} </strong></p>
+
+{% for i in nutzflaechenmassnahmen %}
+
+
+<ul>
+<div class="masShow">
+
     <p>Datum: <strong> {{ i.datum }} </strong> </p>
-    <p>Bearbeitungsschritt: <strong> {{ i.bearbeitung }} </strong> </p>
-    <p>Verantwortlicher: <strong> {{ i.owner }} </strong> </p></li>
+    <p>Maßnahme.: <strong> {{ i.massnahme }} </strong></p>
+    <p>Nutzfahrzeug: <strong> {{ i.landwirtschftliches_nutzfahrzeug }} </strong> </p>
+    <p>Bearbeitungszeit: <strong>{{i.startuhrzeit_der_bearbeitung}}</strong> - <strong>{{i.enduhrzeit_der_bearbeitung}}</strong></p>
 
+</div><br>
+</ul>
+
+<br>
 
 {% endfor %}
 
+
+<h4><a href="."> Zurück zum Produktpass </a></h4>
 
 {% endblock %}

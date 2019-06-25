@@ -29,20 +29,41 @@ def produktpass_search(request):
             return redirect(urlstr_redirect)
 
 
-def produktpass_show(request, id):
+def nutzflaechenmassnahmen_show(request, agProID):
 
-    urlstr = 'http://127.0.0.1:8000/produktpass/' + id
+    #Es wird die ID der Nutzfläche benötigt um die dazugehörigen Nutzflächenmaßnahmen anzufragen
+    #So wird erst die Nutzfläche angefragt
+    url_filter_Nutzfl = '/?agrarprodukt=' + agProID
+    urlNutz = 'http://msandaa.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    response = requests.get(urlNutz)
+    nutzflaeche = response.json()['results'][0]
+    nutzid = str(nutzflaeche['id'])
+
+    #Und mit der NutzflächenID werden die dazugehörigen Maßnahmen angefragt
+    url_filter_NuMass = '/?ausgeführt_auf_nutzflaeche=' + nutzid
+    urlstr = 'http://msandaa.pythonanywhere.com/nutzflaechenmassnahmen' + url_filter_NuMass
     response = requests.get(urlstr)
-    produktpass = response.json()
+    #print(urlstr)
+    nutzflaechenmassnahmen = response.json()['results']
 
-    return render(request, 'API_Client/produktpass_show.html', produktpass)
+    return render(request, 'API_Client/massnahmen_show.html', { 'nutzflaechenmassnahmen' : nutzflaechenmassnahmen })
 
-def massnahmen_show(request, id):
 
-    url_filter = '/?produktpass=' + id
-    url = 'http://127.0.0.1:8000/massnahmen' + url_filter
-    response = requests.get(url)
-    massnahmen = response.json()
-    print(massnahmen)
 
-    return render(request, 'API_Client/massnahmen_show.html',{'massnahmen' : massnahmen})
+def produktpass_show(request, agProID):
+
+    #Ressource Agrarprodukt wird angefragt
+    urlstrAgrarPro = 'http://msandaa.pythonanywhere.com/agrarprodukte/' + agProID
+    response = requests.get(urlstrAgrarPro)
+    #print(response.json())
+    agrarprodukt = response.json()
+
+    #Ressource nutzfläche wird angefragt
+    url_filter_Nutzfl = '/?agrarprodukt=' + agProID
+    urlNutz = 'http://msandaa.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    response = requests.get(urlNutz)
+    #print(response.json()['results'][0])
+    nutzflaeche = response.json()['results'][0]
+
+
+    return render(request, 'API_Client/agrarprodukt_show.html',{'agpro' : agrarprodukt ,'nuzfla' : nutzflaeche})

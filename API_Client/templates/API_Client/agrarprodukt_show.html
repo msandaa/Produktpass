@@ -1,0 +1,48 @@
+{% extends 'API_client/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h4>Produkt</h4>
+
+<p><strong>Agararprodukt</strong></p>
+<p>{{ agpro.agrarprodukt }}</p>
+
+<p><strong>Los-Chargennummer</strong></p>
+<p>{{ agpro.los_chargennummer }}</p>
+
+<p><strong>Produktionsart</strong></p>
+<p>{{ agpro.produktionsart }}</p>
+
+<p><strong>Produzent</strong></p>
+<p>{{ agpro.produzent_name}}</p>
+<p>{{ agpro.produzent_straße}}</p>
+<p>{{ agpro.produzent_ort}}</p>
+
+
+
+<h4>Anbaufläche</h4>
+
+<p><strong>Bundesland und Kreis</strong></p>
+<p>{{ nuzfla.bundesland }},{{ nuzfla.kreis }}</p>
+
+
+<div class="img">
+  <style>
+    img {
+      width: 30%;
+      height: auto;
+    }
+  </style>
+  <img src="{% static 'maps.png' %}" width="353" height="199" alt="Standort des Anbaufeldes">
+</div>
+
+<h4><a href="/produktpass/{{agpro.id}}/nutzflaechenmassnahmen"> Schau dir an, was getan wurde </a></h4>
+
+<hr>
+<hr>
+
+
+
+{% endblock %}

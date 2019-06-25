@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('',views.produktpass_search ,name='produktpass_search'),
-    path('produktpass/<str:id>',views.produktpass_show ,name='produktpass_show'),
-    path('produktpass/<str:id>/massnahmen',views.massnahmen_show ,name='massnahmen_show'),
+    path('produktpass/<str:agProID>/',views.produktpass_show ,name='produktpass_show'),
+    path('produktpass/<str:agProID>/nutzflaechenmassnahmen',views.nutzflaechenmassnahmen_show ,name='nutzflaechenmassnahmen_show'),
 
 ]

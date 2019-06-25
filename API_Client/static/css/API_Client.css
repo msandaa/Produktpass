@@ -5,3 +5,23 @@ input:invalid {
 input:valid {
   border: 2px solid black;
 }
+
+h1 {
+    color: #483D8B;
+}
+
+h4 {
+  text-decoration: underline;
+  color: #000000
+}
+
+body {
+    padding-left: 20px;
+}
+
+.masShow {
+  width: 600px;
+  border-width:        2px;
+  border-style:        solid;
+  border-color:        black;
+}
