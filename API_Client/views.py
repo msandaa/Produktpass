@@ -29,19 +29,21 @@ def produktpass_search(request):
             return redirect(urlstr_redirect)
 
 
-def nutzflaechenmassnahmen_show(request, agProID):
+def nutzflaechenmassnahmen_show(request, agrarProID):
 
     #Es wird die ID der Nutzfläche benötigt um die dazugehörigen Nutzflächenmaßnahmen anzufragen
     #So wird erst die Nutzfläche angefragt
-    url_filter_Nutzfl = '/?agrarprodukt=' + agProID
-    urlNutz = 'http://msandaa.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    url_filter_Nutzfl = '/?agrarprodukt=' + agrarProID
+    urlNutz = 'http://PPREST.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    #urlNutz = 'http://127.0.0.1:8000/nutzflaechen' + url_filter_Nutzfl
     response = requests.get(urlNutz)
     nutzflaeche = response.json()['results'][0]
     nutzid = str(nutzflaeche['id'])
 
     #Und mit der NutzflächenID werden die dazugehörigen Maßnahmen angefragt
     url_filter_NuMass = '/?ausgeführt_auf_nutzflaeche=' + nutzid
-    urlstr = 'http://msandaa.pythonanywhere.com/nutzflaechenmassnahmen' + url_filter_NuMass
+    urlstr = 'http://PPREST.pythonanywhere.com/nutzflaechenmassnahmen' + url_filter_NuMass
+    #urlstr = 'http://127.0.0.1:8000/nutzflaechenmassnahmen' + url_filter_NuMass
     response = requests.get(urlstr)
     #print(urlstr)
     nutzflaechenmassnahmen = response.json()['results']
@@ -50,19 +52,21 @@ def nutzflaechenmassnahmen_show(request, agProID):
 
 
 
-def produktpass_show(request, agProID):
+def produktpass_show(request, agrarProID):
 
     #Ressource Agrarprodukt wird angefragt
-    urlstrAgrarPro = 'http://msandaa.pythonanywhere.com/agrarprodukte/' + agProID
+    urlstrAgrarPro = 'http://PPREST.pythonanywhere.com/agrarprodukte/' + agrarProID
+    #urlstrAgrarPro = 'http://127.0.0.1:8000/agrarprodukte/' + agrarProID
     response = requests.get(urlstrAgrarPro)
     #print(response.json())
     agrarprodukt = response.json()
 
     #Ressource nutzfläche wird angefragt
-    url_filter_Nutzfl = '/?agrarprodukt=' + agProID
-    urlNutz = 'http://msandaa.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    url_filter_Nutzfl = '/?agrarprodukt=' + agrarProID
+    urlNutz = 'http://PPREST.pythonanywhere.com/nutzflaechen' + url_filter_Nutzfl
+    #urlNutz = 'http://127.0.0.1:8000/nutzflaechen' + url_filter_Nutzfl
     response = requests.get(urlNutz)
-    #print(response.json()['results'][0])
+    print(response.json()['results'][0])
     nutzflaeche = response.json()['results'][0]
 
 
